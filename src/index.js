@@ -1,4 +1,4 @@
-// import './style.scss';
+import './style.scss';
 
 import img from './images/image.png';
 import { myFunction, myVariable, myClass } from './parentM.js'
