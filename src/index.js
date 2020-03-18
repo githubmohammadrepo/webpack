@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { myFunction, myVariable, myClass } from './parentM.js'
 
 myFunction()
