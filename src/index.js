@@ -1,8 +1,9 @@
-import './style.scss';
+// import './style.scss';
 
+import img from './images/image.png';
 import { myFunction, myVariable, myClass } from './parentM.js'
 
-myFunction()
+myFunction(img)
 console.log(myVariable)
 let m=(new myClass()) 
 m.show( )
