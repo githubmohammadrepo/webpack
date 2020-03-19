@@ -5,7 +5,7 @@ let myClass = class {
     }
     pTag(){
         let p = document.createElement('p')
-        p.innerText = "Web Pack Is Working Very Well! "
+        p.innerText = "Web Pack Is Working Very Well!.. "
         document.body.appendChild(p)
     }
 };

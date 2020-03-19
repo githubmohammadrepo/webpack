@@ -3,6 +3,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HandlebarsPlugin = require("handlebars-webpack-plugin");
+
 
 module.exports = {
     optimization: {
@@ -54,15 +56,57 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.hbs$/, loader: "handlebars-loader"
+            }
+
 
         ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename:'main.[contenthash].css'
+            filename: 'main.[contenthash].css'
         }),
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin()
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['**/*', 'images/**/*'],
+
+        }),
+
+        new HtmlWebpackPlugin({
+            title: "Generic Head Title",
+            description: "description for meta tag",
+            // the template you want to use
+            template: path.join(__dirname, "src", "index.hbs"),
+            // the output file name
+            filename: path.join(path.resolve(process.cwd(), ' dist'), "indx.html"),
+            inject: "index"
+        }),
+
+        new HandlebarsPlugin({
+            htmlWebpackPlugin: {
+                enabled: true, // register all partials from html-webpack-plugin, defaults to `false`
+                prefix: "html" // where to look for htmlWebpackPlugin output. default is "html"
+            },
+
+            entry: path.join(process.cwd(), "src",  "*.hbs"),
+            output: path.join(process.cwd(), "", "[name].html"),
+
+            partials: [
+                path.join(process.cwd(), "html",/* <-- this should match htmlWebpackPlugin.prefix */ "*", "*.hbs"),
+                path.join(process.cwd(), "src", "hbs", "*", "*.hbs")
+            ]
+        })
+
 
     ],
 
