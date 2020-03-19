@@ -1,5 +1,5 @@
 import './style.scss';
-
+console.log('hi mohammad')
 import img from './images/image.png';
 import { myFunction, myVariable, myClass } from './parentM.js'
 
