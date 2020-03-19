@@ -1,6 +1,7 @@
-@import './style.css';
 $body-color: whitesmoke;
-
+$color: crimson;
 body {
   background: $body-color;
+  color: $color;
+  font-size: 2rem;
 }
