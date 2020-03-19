@@ -7,7 +7,7 @@ myFunction(img)
 console.log(myVariable)
 let m=(new myClass()) 
 m.show( )
-
+m.pTag();
 class Book {
   constructor(name,pages,title=null,description = null) {
     this.name = name;
